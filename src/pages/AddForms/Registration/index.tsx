@@ -1,9 +1,16 @@
+import React, {useEffect} from "react";
 import {Button} from "react-bootstrap";
+import User from '../../../api/user';
 import './style.sass';
 
 interface RegistrationProps {}
 
 const Registration: React.FC<RegistrationProps> = () => {
+  useEffect(() => {
+    User.getAll()
+      .then((data) => console.log(data));
+  })
+
   return(
     <form className="registration-form m-auto">
       <div className="form-group">

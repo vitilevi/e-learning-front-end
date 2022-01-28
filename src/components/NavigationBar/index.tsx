@@ -1,3 +1,4 @@
+import React from "react";
 import {Navbar, Container, Nav} from 'react-bootstrap';
 import './style.sass';
 
@@ -11,10 +12,10 @@ const NavigationBar: React.FC<NavbarProps> = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Registration</Nav.Link>
             <Nav.Link href="/contact">Contact</Nav.Link>
-            <Nav.Link href="/feedback">Feedback</Nav.Link>
             <Nav.Link href="/course">Course</Nav.Link>
+            <Nav.Link href="/feedback">Feedback</Nav.Link>
+            <Nav.Link href="/">User</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

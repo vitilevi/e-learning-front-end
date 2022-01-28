@@ -1,10 +1,11 @@
 import React from 'react';
 import {Switch, Route} from "react-router-dom";
-import Contact from './pages/Contact';
-import Course from './pages/Course';
-import Feedback from './pages/Feedback';
-import Registration from './pages/Registration';
+import ContactForm from './pages/AddForms/Contact';
+import CourseForm from './pages/AddForms/Course';
+import FeedbackForm from './pages/AddForms/Feedback';
+import UserForm from './pages/AddForms/Registration';
 import NavigationBar from "./components/NavigationBar";
+import User from "./pages/ViewData/User";
 import './App.css';
 
 function App() {
@@ -12,10 +13,12 @@ function App() {
     <div>
       <NavigationBar />
       <Switch>
-        <Route exact path="/" component={Registration} />
-        <Route exact path="/contact" component={Contact} />
-        <Route exact path="/course" component={Course} />
-        <Route exact path="/feedback" component={Feedback} />
+        <Route path="/user/new" component={UserForm} />
+        <Route path="/contact/new" component={ContactForm} />
+        <Route path="/course/new" component={CourseForm} />
+        <Route path="/feedback/new" component={FeedbackForm} />
+        {/*<Route path="/user" component={User} />*/}
+        <Route path="/:table" component={User} />
       </Switch>
     </div>
   );
