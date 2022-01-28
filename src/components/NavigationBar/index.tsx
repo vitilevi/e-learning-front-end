@@ -15,7 +15,7 @@ const NavigationBar: React.FC<NavbarProps> = () => {
             <Nav.Link href="/contact">Contact</Nav.Link>
             <Nav.Link href="/course">Course</Nav.Link>
             <Nav.Link href="/feedback">Feedback</Nav.Link>
-            <Nav.Link href="/">User</Nav.Link>
+            <Nav.Link href="/user">User</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
