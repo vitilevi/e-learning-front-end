@@ -51,7 +51,7 @@ export interface FeedbackInterface {
   upload_photo: string;
 }
 
-type TableInterfaces = UserInterface | AdminInterface | ContactInterface | CourseInterface | FeedbackInterface;
+type TableInterfaces = any;
 
 type ArrayResponse = any[];
 
@@ -66,21 +66,21 @@ class fetchApi {
     return _.get(await http.get(`${this.table}`), "data");
   }
 
-  async getById(id: number): Promise<TableInterfaces> {
+  async getById(id: string): Promise<TableInterfaces> {
     return _.get(await http.get(`${this.table}/${id}`), "data");
   }
 
-  async add(data: Response):Promise<boolean> {
+  async add(data: any):Promise<boolean> {
     const req = _.get(await http.post(`${this.table}`, data), "status");
     return req === 201;
   }
 
-  async edit(id: number, data: TableInterfaces):Promise<boolean> {
-    const req = _.get(await http.put(`${this.table}`, data), "status");
+  async edit(id: string, data: TableInterfaces):Promise<boolean> {
+    const req = _.get(await http.put(`${this.table}/${id}`, data), "status");
     return req === 200;
   }
 
-  async delete(id: number):Promise<boolean> {
+  async delete(id: string):Promise<boolean> {
     const req = _.get(await http.delete(`${this.table}/${id}`), "status");
     return req === 204;
   }

@@ -1,11 +1,19 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {Button} from "react-bootstrap";
 import User from '../../../api/user';
-import './style.sass';
+import {RouteComponentProps} from "react-router-dom";
 
-interface RegistrationProps {}
+interface EditUserProps {}
 
-const Registration: React.FC<RegistrationProps> = () => {
+interface MatchParam {
+  table: string;
+  id: string;
+}
+
+interface EditUserProps extends RouteComponentProps<MatchParam>{
+}
+
+const EditUser: React.FC<EditUserProps> = () => {
   useEffect(() => {
     User.getAll()
       .then((data) => console.log(data));
@@ -15,7 +23,11 @@ const Registration: React.FC<RegistrationProps> = () => {
     <form className="registration-form m-auto">
       <div className="form-group">
         <label htmlFor="registration-user-id" className="form-label">User ID</label>
-        <input type="text" id="registration-user-id" className="form-control"/>
+        <input
+          type="text"
+          id="registration-user-id"
+          className="form-control"
+        />
       </div>
       <div className="form-group">
         <label htmlFor="registration-name" className="form-label">Name</label>
@@ -46,4 +58,4 @@ const Registration: React.FC<RegistrationProps> = () => {
   );
 };
 
-export default Registration;
+export default EditUser;
