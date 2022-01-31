@@ -10,7 +10,7 @@ import './App.css';
 
 function App() {
   return (
-    <div>
+    <>
       <NavigationBar />
       <Switch>
         <Route path="/user/new" component={UserForm} />
@@ -23,7 +23,7 @@ function App() {
         <Route path="/feedback/edit/:id" component={FeedbackForm} />
         <Route path="/:table" component={User} />
       </Switch>
-    </div>
+    </>
   );
 }
 
