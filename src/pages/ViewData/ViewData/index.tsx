@@ -14,11 +14,11 @@ interface DataProps extends RouteComponentProps<MatchParam>{
 
 const ViewData: React.FC<DataProps> = ({match: {params: {table}}}) => {
   const [data, setData] = useState<any[]>([]);
-  const UserApi = new fetchApi(table);
+  const dataApi = new fetchApi(table);
   const history = useHistory();
 
   useEffect(() => {
-    UserApi.getAll()
+    dataApi.getAll()
       .then((data) => {
         if(data) {
           setData([...data]);
@@ -83,7 +83,7 @@ const ViewData: React.FC<DataProps> = ({match: {params: {table}}}) => {
                     variant="danger"
                     onClick={async () => {
                       const [key] = Object.keys(res);
-                      const deleted = await UserApi.delete(res[key]);
+                      const deleted = await dataApi.delete(res[key]);
                       if (deleted) window.location.reload()
                       else console.log('Error, not deleted')
                     }}
