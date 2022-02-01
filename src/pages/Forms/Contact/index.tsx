@@ -36,16 +36,18 @@ const Contact: React.FC<ContactProps> = ({match: {params}}) => {
 
   return(
     <form className="contact-form m-auto">
-      <div className="form-group">
-        <label htmlFor="contact-user-id" className="form-label">User ID</label>
-        <input
-          type="number"
-          id="contact-user-id"
-          className="form-control"
-          value={userId}
-          onChange={({target: {value}}) => setUserId(parseInt(value, 10))}
-        />
-      </div>
+      {!_.keys(params).includes('id') && (
+        <div className="form-group">
+          <label htmlFor="contact-user-id" className="form-label">User ID</label>
+          <input
+            type="number"
+            id="contact-user-id"
+            className="form-control"
+            value={userId}
+            onChange={({target: {value}}) => setUserId(parseInt(value, 10))}
+          />
+        </div>
+      )}
       <div className="form-group">
         <label htmlFor="contact-name" className="form-label">Name</label>
         <input
@@ -93,11 +95,7 @@ const Contact: React.FC<ContactProps> = ({match: {params}}) => {
           const obj = {name, email, phone_no: phone, message, user_id: userId}
           let redirect = false;
           if(_.keys(params).includes('id')) {
-            try {
-              redirect = await ContactApi.edit(params.id, obj);
-            } catch (e) {
-              alert('User ID doesn\'t exist');
-            }
+            redirect = await ContactApi.edit(params.id, obj);
           } else {
             try {
               redirect = await ContactApi.add(obj);

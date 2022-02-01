@@ -34,16 +34,18 @@ const Feedback: React.FC<FeedbackProps> = ({match: {params}}) => {
 
   return(
     <form className="feedback-form m-auto">
-      <div className="form-group">
-        <label htmlFor="feedback-user-id" className="form-label">User ID</label>
-        <input
-          type="number"
-          id="feedback-user-id"
-          className="form-control"
-          value={userId}
-          onChange={({target: {value}}) => setUserId(parseInt(value, 10))}
-        />
-      </div>
+      {!_.keys(params).includes('id') && (
+        <div className="form-group">
+          <label htmlFor="feedback-user-id" className="form-label">User ID</label>
+          <input
+            type="number"
+            id="feedback-user-id"
+            className="form-control"
+            value={userId}
+            onChange={({target: {value}}) => setUserId(parseInt(value, 10))}
+          />
+        </div>
+      )}
       <div className="form-group">
         <label htmlFor="feedback-name" className="form-label">Name</label>
         <input
@@ -81,11 +83,7 @@ const Feedback: React.FC<FeedbackProps> = ({match: {params}}) => {
           const obj = {name, email, feedback, user_id: userId}
           let redirect = false;
           if(_.keys(params).includes('id')) {
-            try {
-              redirect = await FeedbackApi.edit(params.id, obj);
-            } catch (e) {
-              alert('User ID doesn\'t exist');
-            }
+            redirect = await FeedbackApi.edit(params.id, obj);
           } else {
             try {
               redirect = await FeedbackApi.add(obj);
