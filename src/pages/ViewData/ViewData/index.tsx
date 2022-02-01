@@ -36,7 +36,7 @@ const ViewData: React.FC<DataProps> = ({match: {params: {table}}}) => {
       >
         {`New ${table}`}
       </Button>
-      <Table>
+      <Table hover>
         <thead>
           <tr>
             {
